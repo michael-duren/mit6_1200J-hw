@@ -1,0 +1,50 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage[margin=1in]{geometry}
+
+% Shortcuts
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\set}[1]{\{#1\}}
+
+% Theorem-like environments
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{claim}{Claim}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\title{Problem Set 2}
+\author{Michael Duren}
+\date{2026-11-05}
+
+\renewcommand{\thesubsection}{\alph{subsection}}
+
+\begin{document}
+\maketitle
+
+\section*{Problem Set 2}
+
+\subsection{[3 pts]} \textbf{Theorem:} "Every natural number is tall or wide, but not both." (Proof method: proof by cases.)
+
+\begin{proof}
+	The proposition:
+	\[
+		\forall n \in \N, (\text{Tall}(n) \vee \text{Wide}(n)) \wedge \neg(\text{Tall}(n) \wedge \text{Wide}(n))
+	\]
+	Let $n \in \N$.
+
+	\textbf{Part 1 (existence):} We WTS $\text{Tall}(n) \wedge \text{Wide}(n)$.
+		[TODO: show every natural number is tall or wide].
+
+	\textbf{Part 2(uniqueness):} We WTS $\neg(\text{Tall}(n) \wedge \text{Wide}(n))$ by cases on whether $n$ is tall.
+	\begin{itemize}
+		\item \emph{Case 1: $n$ is tall.} [TODO: show $n$ is not wide.] Then $\neg (\text{Tall}(n) \wedge \text{Wide}(n))$.
+		\item \emph{Case 2: $n$ is not tall.} Then $\text{Tall}(n) \wedge \text{Wide}(n)$ is false because the first conjunct fails.
+	\end{itemize}
+    Coming Parts 1 and 2 gives the theorem.
+\end{proof}
+
+\end{document}
