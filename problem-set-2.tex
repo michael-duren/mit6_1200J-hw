@@ -25,8 +25,9 @@
 \begin{document}
 \maketitle
 
-\section*{Problem Set 2}
+\section*{Problem 1}
 
+% PROBLEM 1A =================================================================================================================
 \subsection{[3 pts]} \textbf{Theorem:} "Every natural number is tall or wide, but not both." (Proof method: proof by cases.)
 
 \begin{proof}
@@ -44,7 +45,83 @@
 		\item \emph{Case 1: $n$ is tall.} [TODO: show $n$ is not wide.] Then $\neg (\text{Tall}(n) \wedge \text{Wide}(n))$.
 		\item \emph{Case 2: $n$ is not tall.} Then $\text{Tall}(n) \wedge \text{Wide}(n)$ is false because the first conjunct fails.
 	\end{itemize}
-    Coming Parts 1 and 2 gives the theorem.
+	Combing Parts 1 and 2 gives the theorem.
 \end{proof}
+
+\vspace{1cm}
+% END PROBLEM =================================================================================================================
+
+% PROBLEM 1B =================================================================================================================
+\subsection{[3 pts]} \textbf{Theorem:} "There exists a happy natural number between 10 and 1000 that has
+no happy proper divisors" (Proof method to use: choose 25 as the example)
+
+\begin{proof}
+	The proposition $\text{P}$:
+	\[
+		\exists n \in \N, 10 < n < 1000 \wedge \text{isHappy}(n) \wedge (n \text{ has no happy proper divisors})
+	\]
+	We claim $n = 25$ satisfies the condition.
+
+	\begin{itemize}
+		\item \textbf{Range: } $10 < n < 25$ \checkmark
+		\item $n$ itself is happy because [TODO: prove]
+		\item $n$ has two proper divisors: $1$ and $5$.
+
+		      \begin{itemize}
+			      \item WTS that 1 is not a \underline{happy} number because: [TODO: prove why]
+			      \item WTS that 5 is not a \underline{happy} number because: [TODO: prove why]
+		      \end{itemize}
+	\end{itemize}
+
+	Therefore 25 proves the existential claim, proving the theorem.
+\end{proof}
+
+\vspace{1cm}
+% END PROBLEM =================================================================================================================
+
+% PROBLEM 1C =================================================================================================================
+\subsection{[3 pts]} \textbf{Theorem:} “There are no devious natural numbers.” (Proof method to use: regular induction, with base cases 0 and 1.)
+\begin{proof}
+	The proposition:
+	\[
+		\forall n \in \N,\ \neg \text{isDevious}(n)
+	\]
+	Let $P(n) := \neg \text{isDevious}(n)$. We prove $\forall n \in \N,\ P(n)$ by induction.
+	\begin{itemize}
+		\item \textbf{Base case $P(0)$:} WTS $0$ is not devious. [TODO]
+		\item \textbf{Base case $P(1)$:} WTS $1$ is not devious. [TODO]
+		\item \textbf{Inductive step:} Let $n \geq 1$, and assume $P(n-1)$ and $P(n)$. WTS $P(n+1)$.
+			      [TODO: using that $n-1$ and $n$ are not devious, show $n+1$ is not devious.]
+	\end{itemize}
+	By induction, $\forall n \in \N,\ \neg \text{isDevious}(n)$.
+\end{proof}
+
+\vspace{1cm}
+% END PROBLEM =================================================================================================================
+
+\section*{Problem 2}
+% RESET SUB SECTION COUNTER 
+\setcounter{subsection}{0}
+
+% PROBLEM 2A =================================================================================================================
+\subsection{[3 pts]} Befuddled Brynmor tries to help by proving the claim as follows. What is his mistake?
+\begin{proof}
+    Brynmor substitutes $x_{i-1} \geq 2^{i-1}$ into $-8 x_{i-1}$ as if it produces a lower bound, but since the coefficient is negative the inequality direction flips: $-8 x_{i-1} \leq -8 \cdot 2^{i-1}$. So his conclusion $x_{i+1} \geq 6 \cdot 2^i - 8 \cdot 2^{i-1}$ is unjustified.
+\end{proof}
+\vspace{1cm}
+
+\vspace{1cm}
+% END PROBLEM =================================================================================================================
+
+% PROBLEM 2B =================================================================================================================
+\subsection{[3 pts]} Erroneous Erik tries to help by proving the claim as follows. What is his mistake?\begin{proof}
+
+    Brynmor substitutes $x_{i-1} \geq 2^{i-1}$ into $-8 x_{i-1}$ as if it produces a lower bound, but since the coefficient is negative the inequality direction flips: $-8 x_{i-1} \leq -8 \cdot 2^{i-1}$. So his conclusion $x_{i+1} \geq 6 \cdot 2^i - 8 \cdot 2^{i-1}$ is unjustified.
+\end{proof}
+\vspace{1cm}
+
+\vspace{1cm}
+% END PROBLEM =================================================================================================================
+
 
 \end{document}
