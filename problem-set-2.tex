@@ -106,7 +106,7 @@ no happy proper divisors" (Proof method to use: choose 25 as the example)
 % PROBLEM 2A =================================================================================================================
 \subsection{[3 pts]} Befuddled Brynmor tries to help by proving the claim as follows. What is his mistake?
 \begin{proof}
-    Brynmor substitutes $x_{i-1} \geq 2^{i-1}$ into $-8 x_{i-1}$ as if it produces a lower bound, but since the coefficient is negative the inequality direction flips: $-8 x_{i-1} \leq -8 \cdot 2^{i-1}$. So his conclusion $x_{i+1} \geq 6 \cdot 2^i - 8 \cdot 2^{i-1}$ is unjustified.
+	Brynmor substitutes $x_{i-1} \geq 2^{i-1}$ into $-8 x_{i-1}$ as if it produces a lower bound, but since the coefficient is negative the inequality direction flips: $-8 x_{i-1} \leq -8 \cdot 2^{i-1}$. So his conclusion $x_{i+1} \geq 6 \cdot 2^i - 8 \cdot 2^{i-1}$ is unjustified.
 \end{proof}
 \vspace{1cm}
 
@@ -114,14 +114,45 @@ no happy proper divisors" (Proof method to use: choose 25 as the example)
 % END PROBLEM =================================================================================================================
 
 % PROBLEM 2B =================================================================================================================
-\subsection{[3 pts]} Erroneous Erik tries to help by proving the claim as follows. What is his mistake?\begin{proof}
+\subsection{[3 pts]} Erroneous Erik tries to help by proving the claim as follows. What is his mistake?
 
-    Brynmor substitutes $x_{i-1} \geq 2^{i-1}$ into $-8 x_{i-1}$ as if it produces a lower bound, but since the coefficient is negative the inequality direction flips: $-8 x_{i-1} \leq -8 \cdot 2^{i-1}$. So his conclusion $x_{i+1} \geq 6 \cdot 2^i - 8 \cdot 2^{i-1}$ is unjustified.
+\begin{proof}
+	The bug is located in Eriks use of his inductive hypothesis $\text{R}(i) := "x_i \geq 3x_{i-1}"$. $\text{R}(i)$ states
+	nothing about $x_i > 0$ and consequently doesn't prove this in either the base case or induction step.
+	This becomes a circular reference since the goal is to prove for all $i \geq 1, x_i > 0$. If Erik were to
+	strengthen his IH, by redefining R as $\text{R}(i) := "x_i \geq 3x_{i-1} \wedge x_i > 0"$ this would prove the
+	theorem.
 \end{proof}
-\vspace{1cm}
 
 \vspace{1cm}
 % END PROBLEM =================================================================================================================
 
+% PROBLEM 2C =================================================================================================================
+\subsection{[3 pts]} Overzealous Zach tries to help by proving the claim as follows. What is his mistake?
+\begin{proof}
+	Zachs inductive step assums $\text{S}(i)$ and $\text{S}(i-1)$ but he has only proven one base case.
+	The recurrence of $x_{i+1} = 6x_{i} - 8x_{i-1}$ reaches back two steps but he has not proven two base cases.
+	If we were to reach back another step from $\text{S}(i)$ we would get $\text{S}(0)$ which is not apart of the original
+	sequence.
+\end{proof}
+
+\vspace{1cm}
+% END PROBLEM =================================================================================================================
+
+
+% PROBLEM 2D =================================================================================================================
+\subsection{[6 pts]} Prove the original claim that for all $i \geq 1, x_i > 0$.
+
+\begin{theorem}
+    Let $(x_1, x_2, x_3, \ldots)$ be the sequence of integers defined by $x_1 = 4$, $x_2 = 13$, and 
+    $x_i = 6 x_{i-1} - 8 x_{i-2}$ for all $i \geq 3$. Then for all $i \geq 1$, $x_i > 0$.
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
+
+\vspace{1cm}
+% END PROBLEM =================================================================================================================
 
 \end{document}
