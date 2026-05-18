@@ -130,7 +130,7 @@ no happy proper divisors" (Proof method to use: choose 25 as the example)
 % PROBLEM 2C =================================================================================================================
 \subsection{[3 pts]} Overzealous Zach tries to help by proving the claim as follows. What is his mistake?
 \begin{proof}
-	Zachs inductive step assums $\text{S}(i)$ and $\text{S}(i-1)$ but he has only proven one base case.
+	Zachs inductive step assumes $\text{S}(i)$ and $\text{S}(i-1)$ but he has only proven one base case.
 	The recurrence of $x_{i+1} = 6x_{i} - 8x_{i-1}$ reaches back two steps but he has not proven two base cases.
 	If we were to reach back another step from $\text{S}(i)$ we would get $\text{S}(0)$ which is not apart of the original
 	sequence.
@@ -144,11 +144,26 @@ no happy proper divisors" (Proof method to use: choose 25 as the example)
 \subsection{[6 pts]} Prove the original claim that for all $i \geq 1, x_i > 0$.
 
 \begin{theorem}
-    Let $(x_1, x_2, x_3, \ldots)$ be the sequence of integers defined by $x_1 = 4$, $x_2 = 13$, and 
-    $x_i = 6 x_{i-1} - 8 x_{i-2}$ for all $i \geq 3$. Then for all $i \geq 1$, $x_i > 0$.
+	Let $(x_1, x_2, x_3, \ldots)$ be the sequence of integers defined by $x_1 = 4$, $x_2 = 13$, and
+	$x_i = 6 x_{i-1} - 8 x_{i-2}$ for all $i \geq 3$. Then for all $i \geq 1$, $x_i > 0$.
 \end{theorem}
 
 \begin{proof}
+	We'll use regular induction on the induction hypothesis $\text{IH}(i) := "x_i \geq 3x_{i-1} \wedge x_{i-1} > 0"$ holds for all
+	$i \geq 2$.
+
+	\begin{itemize}
+		\item \textbf{Base case} $\text{IH}(2)$: $x_2 = 13 \geq 12 = 3x_1$. $x_1 = 4 > 0$ \checkmark
+		\item \textbf{Inductive Step}: Suppose $i \geq 2$. Assuming $x_i \geq 3x_{i-1} \wedge x_{i-1} > 0$ (IH$(i)$), WTS that $x_{i+1} \geq 3x_i \wedge x_i > 0$ (IH$(i+1)$).
+
+		      First, from IH$(i)$ we have $x_{i-1} > 0$, so $3x_{i-1} > 0$, and $x_i \geq 3x_{i-1} > 0$. Hence $x_i > 0$, establishing the second conjunct of IH$(i+1)$.
+
+		      If $x_i \geq 3x_{i-1}$, we can rewrite this inequality by multiplying both sides by $\frac{8}{3}$ to get $\frac{8}{3}x_i \geq 8x_{i-1}$. Rewriting the recurrence $x_{i+1} = 6x_i - 8x_{i-1}$ as $x_{i+1} = \frac{10}{3}x_i + \frac{8}{3}x_i - 8x_{i-1}$, and noting that $\frac{8}{3}x_i - 8x_{i-1} \geq 0$ from above, we get $x_{i+1} \geq \frac{10}{3}x_i$. Since $x_i > 0$, $\frac{10}{3}x_i \geq 3x_i$, so $x_{i+1} \geq 3x_i$.
+
+		      Combined with $x_i > 0$, we have $x_{i+1} \geq 3x_i > 0$, establishing both conjuncts of IH$(i+1)$. This completes the inductive step for all $i \geq 2$.
+		\item \textbf{Conclusion:} By induction, $\text{IH}(i)$ holds for all $i \geq 2$. Since $\text{IH}(i)$ shows that $x_{i-1} > 0$ taking
+		      all of $i = 2, 3, 4 \ldots$ gives $x_1 > 0, x_2 > 0, x_3 > 0 \ldots$ covering every $x_i$ for $i \geq 1$. Therefore $x_i > 0$ for all of $i \geq 1$.
+	\end{itemize}
 
 \end{proof}
 
