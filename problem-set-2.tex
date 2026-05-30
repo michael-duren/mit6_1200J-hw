@@ -216,43 +216,35 @@ Transitions are defined for $s > 0$:
 \end{theorem*}
 
 \begin{proof}
-	By \emph{invariant} principle. Let $q \coloneqq \set{r, s, a}$.
-
+	By \emph{invariant} principle.
 	\begin{itemize}
-		\item $\text{P}(q_0)$ is true because:
-		      If $xy$ is equal to $rs$ during the starting state, and $a$ is zero, then
-		      $xy$ is equal to $rs + a$ since $a$ is zero and we know that $xy$ is equal to $rs$.
-
-		\item $\text{P}(q)$ is preserved, consider any
-		      $q \mapsto r\in \mathcal{T} \text{w/} \text{P}(q) \implies \text{P}(r)$
-		      \\
-		      Let $(a, b, c) \coloneqq q$.
-		      We will use cases to prove that transition r holds for the two possibilities
-		      that $b$ is even or odd, acknowledging that if $b <= 0$ then we are already
-		      at the final state.
-		      \\
+		\item $P(r, s, a)$ holds at the start state $(x, y, 0)$ because
+		      $rs + a = xy + 0 = xy$.
+		\item $P(r, s, a)$ is preserved: for any transition
+		      $(r, s, a) \to (r', s', a')$ with $P(r, s, a)$ true,
+		      we show $P(r', s', a')$ holds.
+		      Since $s \in \mathbb{N}$, if $s = 0$ there is no transition,
+		      so we consider the cases where $s > 0$.
 		      \begin{itemize}
-			      \item \textbf{Case 1: $b$ is even.}
+			      \item \textbf{Case 1: $s$ is even.}
 			            \\
-			            Because $b$ is even the state $r$ is equal to $r = (2a, b/2, c)$ per our transition definitions.
-			            We know that $xy = ab + c$
-			            by the assumption $P(q)$, and WTS $xy = 2a (b/2) + c$.
-			            Let us simplify to $2ab/2 + c$ and we can see that equals $ab + c$ thus
-			            the value of $P(q)$ is equal to $P(r)$ since $ab +c$ is equal to $2a(b/2) + c$
-			            and since $P(q)$ is true $P(r)$ holds.
+			            The next state is $(r', s', a') = (2r,\; s/2,\; a)$.
+			            We know $xy = rs + a$ by assumption $P(r, s, a)$,
+			            and WTS $r's' + a' = xy$.
+			            We have $r's' + a' = 2r(s/2) + a = rs + a = xy$.
+			            Thus $P(r', s', a')$ holds.
 			            \\
-			      \item \textbf{Case 2: $b$ is odd.}
-			            As with case 1 we use our transition definition this time to show what transition
-			            r state is when $b$ is odd: $r = (2a, (b - 1) / 2, c + a)$.
-			            We know that $xy = ab + c$
-			            by the assumption $P(q)$, and WTS $xy = 2a(b-1) / 2 + (c + a)$
-			            using the previous state of $q$ $xy = ab + c$.
-			            After distributing and combining like terms we get: $\frac{(2ab - 2a)}{2} + a + c$ simplifying further yields $ab - a + a + c$ which is equivalent to
-			            $ab + c$.
+			      \item \textbf{Case 2: $s$ is odd.}
+			            \\
+			            The next state is $(r', s', a') = (2r,\; (s-1)/2,\; a + r)$.
+			            We know $xy = rs + a$ by assumption $P(r, s, a)$,
+			            and WTS $r's' + a' = xy$.
+			            We have $r's' + a' = 2r \cdot \frac{s-1}{2} + a + r
+				            = r(s-1) + a + r = rs - r + r + a = rs + a = xy$.
+			            Thus $P(r', s', a')$ holds.
 		      \end{itemize}
-
-		\item \textbf{Conclusion:} By invariant principle and cases we have shown that 
-            $P(q)$ holds for all transitions \mathcal{T}.
+		\item \textbf{Conclusion:} By the invariant principle,
+		      $P(r, s, a)$ holds for all reachable states.
 	\end{itemize}
 \end{proof}
 
