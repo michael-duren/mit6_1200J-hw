@@ -1,12 +1,14 @@
 \documentclass[11pt]{article}
 \usepackage{amsmath, amssymb, amsthm, mathtools}
 \usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
 
 % Shortcuts
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\T}{\mathbb{T}}
 \newcommand{\set}[1]{\{#1\}}
 
 % Theorem-like environments
@@ -165,6 +167,93 @@ no happy proper divisors" (Proof method to use: choose 25 as the example)
 		      all of $i = 2, 3, 4 \ldots$ gives $x_1 > 0, x_2 > 0, x_3 > 0 \ldots$ covering every $x_i$ for $i \geq 1$. Therefore $x_i > 0$ for all of $i \geq 1$.
 	\end{itemize}
 
+\end{proof}
+
+\vspace{1cm}
+% END PROBLEM =================================================================================================================
+
+\section*{Problem 3}
+% RESET SUB SECTION COUNTER 
+\setcounter{subsection}{0}
+
+% PROBLEM 3A =================================================================================================================
+\subsection{[2 pts]}  Compute the full sequence of transitions from starting state (5, 22, 0). Does it
+correctly compute 5 · 22 = 110?.
+
+\begin{tabular}{cccc}
+	\toprule
+	r   & s  & a   & rule        \\
+	\midrule
+	5   & 22 & 0   & \text{even} \\
+	10  & 11 & 0   & \text{odd}  \\
+	20  & 5  & 10  & \text{odd}  \\
+	40  & 2  & 30  & \text{even} \\
+	80  & 1  & 30  & \text{odd}  \\
+	160 & 0  & 110 & \text{done}
+	\bottomrule
+\end{tabular}
+
+\vspace{1cm}
+% END PROBLEM =================================================================================================================
+
+% PROBLEM 3B =================================================================================================================
+\subsection{[2 pts]}
+\textbf{State machine rules}:
+The states are triples $(r, s, a) \in \N^3$, with start state $(x, y, 0)$.
+Transitions are defined for $s > 0$:
+\[
+	(r, s, a) \mapsto
+	\begin{cases}
+		(2r,\ s/2,\ a)         & \text{if } (s \text{ is even} \wedge  s > 0) \\
+		(2r,\ (s-1)/2,\ a + r) & \text{if } (s \text{ is odd} \wedge s > 0)   \\
+	\end{cases}
+\]
+
+\textbf{\emph{Invariant.}} Define $P(r,s,a) \coloneqq rs + a = xy$
+\\
+\begin{theorem*}
+	Theorem: $P$ is an invariant of the state machine.
+\end{theorem*}
+
+\begin{proof}
+	By \emph{invariant} principle. Let $q \coloneqq \set{r, s, a}$.
+
+	\begin{itemize}
+		\item $\text{P}(q_0)$ is true because:
+		      If $xy$ is equal to $rs$ during the starting state, and $a$ is zero, then
+		      $xy$ is equal to $rs + a$ since $a$ is zero and we know that $xy$ is equal to $rs$.
+
+		\item $\text{P}(q)$ is preserved, consider any
+		      $q \mapsto r\in \mathcal{T} \text{w/} \text{P}(q) \implies \text{P}(r)$
+		      \\
+		      Let $(a, b, c) \coloneqq q$.
+		      We will use cases to prove that transition r holds for the two possibilities
+		      that $b$ is even or odd, acknowledging that if $b <= 0$ then we are already
+		      at the final state.
+		      \\
+		      \begin{itemize}
+			      \item \textbf{Case 1: $b$ is even.}
+			            \\
+			            Because $b$ is even the state $r$ is equal to $r = (2a, b/2, c)$ per our transition definitions.
+			            We know that $xy = ab + c$
+			            by the assumption $P(q)$, and WTS $xy = 2a (b/2) + c$.
+			            Let us simplify to $2ab/2 + c$ and we can see that equals $ab + c$ thus
+			            the value of $P(q)$ is equal to $P(r)$ since $ab +c$ is equal to $2a(b/2) + c$
+			            and since $P(q)$ is true $P(r)$ holds.
+			            \\
+			      \item \textbf{Case 2: $b$ is odd.}
+			            As with case 1 we use our transition definition this time to show what transition
+			            r state is when $b$ is odd: $r = (2a, (b - 1) / 2, c + a)$.
+			            We know that $xy = ab + c$
+			            by the assumption $P(q)$, and WTS $xy = 2a(b-1) / 2 + (c + a)$
+			            using the previous state of $q$ $xy = ab + c$.
+			            After distributing and combining like terms we get: $\frac{(2ab - 2a)}{2} + a + c$ simplifying further yields $ab - a + a + c$ which is equivalent to
+			            $ab + c$.
+		      \end{itemize}
+
+		\item \textbf{Conclusion:} By invariant principle and cases we have shown that 
+            $P(q)$ holds for all transitions \mathcal{T}.
+	\end{itemize}
 \end{proof}
 
 \vspace{1cm}
